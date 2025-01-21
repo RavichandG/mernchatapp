@@ -73,36 +73,7 @@ const OtpPage = () => {
     number1Ref.current.focus()
    }
    
-    async function register()
-    {
-      
-        
-        const response = await fetch("http://localhost:8000/api/user",{
-            method:"POST",
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body:JSON.stringify({
-                name : nameFromUser,
-                email : emailFromUser,
-                password : passwordFromUser
-            })
-        })
-        const data = await response.json()
- 
-        toast({
-            title:"User Registration Completed",
-            duration:5000,
-            isClosable:true,
-            status:"success",
-            position:"bottom"
-        })
-       
 
-        localStorage.setItem("userInfo",JSON.stringify(data))
-      
-        navigate("/chats")
-    }
 
     useEffect(()=>{
       console.log(emailFromUser)

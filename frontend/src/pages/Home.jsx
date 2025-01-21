@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <Container maxW="xl" centerContent className='mainBlock'>
         
-        <div className='mainHeading'><h1>F for Friends</h1></div>
+        <div className='mainHeading'><h1>Chatting application</h1></div>
         <div className='mainContent'>
         <Tabs variant='soft-rounded' >
   <TabList>

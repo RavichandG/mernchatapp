@@ -43,6 +43,9 @@ const Signup = () => {
             setShow2(false)
         }
     }
+
+
+
    async  function submitSignup()
     {
         setLoading(true)
@@ -72,38 +75,35 @@ const Signup = () => {
         }
 
         try{
-             if(regex.test(emailFromUser))
-                {
-                  const response = await  fetch("http://localhost:8000/api/otp/sendotp",{
-                        method:"POST",
-                        headers:{
-                            'Content-Type':'application/json'
-                        },
-                        body:JSON.stringify({
-                            email:emailFromUser
-                        })
-                    })
-                    if(response.status ==200)
-                        {
-                            setLoading(false)
-                            const data = await response.json();
-                            console.log(data)
-                            navigate("/verification")
-                        }
-                            
-                            
-                        
-                }else{
-                    toast({
-                        title:"Error Occured !",
-                        description:"Enter Valid Email",
-                        duration:5000,
-                        status:"error",
-                        position:"bottom",
-                        isClosable:true
-                       })
-                       setLoading(false)
-                }
+             
+
+            const response = await fetch("http://localhost:8000/api/user",{
+                method:"POST",
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify({
+                    name : nameFromUser,
+                    email : emailFromUser,
+                    password : passwordFromUser
+                })
+            })
+            const data = await response.json()
+     
+            toast({
+                title:"User Registration Completed",
+                duration:5000,
+                isClosable:true,
+                status:"success",
+                position:"bottom"
+            })
+           
+    
+            localStorage.setItem("userInfo",JSON.stringify(data))
+          
+            navigate("/chats")
+
+            
               
         }catch(e)
         {
